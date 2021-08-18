@@ -1,2 +1,6 @@
+name = "Dagitty"
+uuid = "d56128e0-8113-48cd-82a0-fc808dc30d4b"
+authors = ["Max Lapan <max.lapan@gmail.com>"]
+
 [deps]
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
