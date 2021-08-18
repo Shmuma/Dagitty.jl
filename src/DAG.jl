@@ -25,3 +25,7 @@ end
 function Base.show(io::IO, g::DAG)
     println(io, "DAG: $(g.graph) with labels $(g.labels))")
 end
+
+
+export
+    DAG
