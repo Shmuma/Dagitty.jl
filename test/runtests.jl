@@ -1,7 +1,10 @@
 using Dagitty
 using Test
 
-@testset "Dagitty.jl" begin
-    d = DAG(:A => :M, :A => :D, :M => :D)
-    @test d.labels == [:A, :D, :M]
+tests = ["DAG"]
+
+for t ∈ tests
+    @testset "$t" begin
+        include("test_$(t).jl")
+    end
 end
