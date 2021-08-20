@@ -5,3 +5,4 @@ authors = ["Max Lapan <max.lapan@gmail.com>"]
 [deps]
 GraphPlot = "a2cc645c-3eea-5389-862e-a155d0052231"
 LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
