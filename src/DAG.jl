@@ -1,6 +1,7 @@
 using LightGraphs
 using Base.Iterators: Iterators
 
+struct DAGHasLoops <: Exception end
 
 struct DAG
     graph::SimpleDiGraph
@@ -16,9 +17,9 @@ function DAG(edges)
     lab_indices = Dict(zip(labels, Base.OneTo(vert_count)))
     graph = SimpleDiGraph(vert_count)
     for (a, b) ∈ edges
-        # TODO: check for cycles (just in case)
         add_edge!(graph, lab_indices[a], lab_indices[b])
     end
+    simplecyclescount(graph) > 0 && throw(DAGHasLoops())
     DAG(graph, labels)
 end
 
@@ -28,4 +29,5 @@ end
 
 
 export
-    DAG
+    DAG,
+    DAGHasLoops
