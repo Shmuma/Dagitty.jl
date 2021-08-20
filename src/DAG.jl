@@ -1,5 +1,4 @@
 using LightGraphs
-using Base.Iterators: Iterators
 
 struct DAGHasLoops <: Exception end
 
