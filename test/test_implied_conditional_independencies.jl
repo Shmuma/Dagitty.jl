@@ -1,3 +1,5 @@
-g = DAG(:A => :M, :A => :D)
+g = DAG(:A => :M, :A => :D, :M => :D)
+r = implied_conditional_independencies(g)
+println(r)
 
-@test implied_conditional_independencies(g) == []
+@test true
