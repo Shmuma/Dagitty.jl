@@ -3,7 +3,8 @@ using Test
 
 tests = [
     "DAG",
-    "implied_conditional_independencies"
+    "implied_conditional_independencies",
+    "utils"
 ]
 
 for t ∈ tests

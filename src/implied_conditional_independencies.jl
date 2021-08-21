@@ -8,13 +8,17 @@ end
 
 function implied_conditional_independencies(dag::DAG)::Vector{ConditionalIndependence}
     max_set = length(dag.labels) - 2
-    for (var1, var2) ∈ combinations(dag.labels, 2)
-        rest = [l for l ∈ dag.labels if l != var1 && l != var2]
+    result = Vector{ConditionalIndependence}()
+    nodes = Base.OneTo(length(dag.labels))
+    for (n1, n2) ∈ combinations(nodes, 2)
+        rest = [n for n ∈ nodes if n != n1 && n != n2]
         for cond ∈ powerset(rest, 1, max_set)
-            println("Checking d-separability of $var1 against $var2 given $cond")
+            if is_d_separated(dag, n1, n2, cond)
+                push!(ConditionalIndependence(var1, var2, cond))
+            end
         end
     end
-    []
+    result
 end
 
 
