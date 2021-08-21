@@ -1,7 +1,10 @@
 using Dagitty
 using Test
 
-tests = ["DAG"]
+tests = [
+    "DAG",
+    "implied_conditional_independencies"
+]
 
 for t ∈ tests
     @testset "$t" begin
