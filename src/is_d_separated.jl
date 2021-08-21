@@ -1,22 +1,36 @@
-function is_d_separated(dag::DAG, var1::Symbol, var2::Symbol, vars::Union{Set{Symbol}, Vector{Symbol}})::Bool
-    n1 = node(dag, var1)
-    n2 = node(dag, var2)
-    cond_nodes = Set(map(v -> node(dag, v), vars))
-    is_d_separated(dag, n1, n2, cond_nodes)
+function is_d_separated(dag::DAG, x::Vector{Symbol}, y::Vector{Symbol}, cond::Vector{Symbol})::Bool
+    f = v -> node(dag, v)
+    is_d_separated(dag, map(f, x), map(f, y), map(f, cond))
 end
 
-is_d_separated(dag::DAG, n1::Int, n2::Int, cond::Vector{Int})::Bool = is_d_separated(dag, n1, n2, Set(cond))
+function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{Int})::Bool
+    xyz = Set(union(x, y, cond))
+    gr = SimpleDiGraph(dag.graph)
+    leaves = [n for n in vertices(gr) if outdegree(gr, n) == 0]
 
-function is_d_separated(dag::DAG, n1::Int, n2::Int, cond::Set{Int})::Bool
-    println("Check d-separation of $n1 with $n2 conditioned on $cond")
-    all(p -> _path_d_separated(dag, p, cond), all_simple_paths(dag.graph, n1, n2))
+    while !isempty(leaves)
+        leaf = popfirst!(leaves)
+        leaf ∈ xyz && continue
+        for n ∈ inneighbors(gr, leaf)
+            if outdegree(gr, n) == 1
+                push!(leaves, n)
+            end
+        end
+        rem_vertex!(gr, leaf)
+    end
+
+    # remove edges from Z set
+    for s ∈ cond
+        for d ∈ outneighbors(gr, s)
+            rem_edge!(gr, s, d)
+        end
+    end
+
+    comps = weakly_connected_components(gr)
+    x_comps = map(c -> !isempty(intersect(c, x)), comps)
+    y_comps = map(c -> !isempty(intersect(c, y)), comps)
+    !any(x_comps .& y_comps)
 end
-
-function _path_d_separated(dag::DAG, path::Vector{Int}, cond::Set{Int})::Bool
-    println("$path")
-    false
-end
-
 
 export
     is_d_separated
