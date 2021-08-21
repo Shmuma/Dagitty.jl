@@ -1,10 +1,9 @@
 using LightGraphs
-using StaticGraphs
 
 struct DAGHasLoops <: Exception end
 
 struct DAG
-    graph::StaticDiGraph
+    graph::SimpleDiGraph
     labels::Vector{Symbol}
 end
 
@@ -19,7 +18,6 @@ function DAG(edges)
     for (a, b) ∈ edges
         add_edge!(graph, lab_indices[a], lab_indices[b])
     end
-    graph = StaticDiGraph(graph)
     simplecyclescount(graph) > 0 && throw(DAGHasLoops())
     DAG(graph, labels)
 end
