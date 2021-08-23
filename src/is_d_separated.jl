@@ -36,20 +36,20 @@ function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{I
     while !isempty(leaves)
         leaf = popfirst!(leaves)
         leaf ∈ xyz && continue
-        for n ∈ inneighbors(gr, leaf)
+        for n ∈ collect(inneighbors(gr, leaf))
             rem_edge!(gr, n, leaf)
             if outdegree(gr, n) == 0
                 push!(leaves, n)
             end
         end
-        for d ∈ outneighbors(gr, leaf)
+        for d ∈ collect(outneighbors(gr, leaf))
             rem_edge!(gr, leaf, d)
         end
     end
 
     # remove edges from Z set
     for s ∈ cond
-        for d ∈ outneighbors(gr, s)
+        for d ∈ collect(outneighbors(gr, s))
             rem_edge!(gr, s, d)
         end
     end

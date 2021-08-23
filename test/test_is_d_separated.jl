@@ -25,7 +25,7 @@ g = DAG(
     :bronchitis => :dyspnea
 )
 # this test is wrong - dyspnea is in isolated component, but xray is on the main
-@test !is_d_separated(g,
+@test is_d_separated(g,
     [:asia, :smoking],
     [:dyspnea, :xray],
     [:bronchitis, :either]

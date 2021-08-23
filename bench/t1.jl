@@ -1,3 +1,4 @@
+using BenchmarkTools
 using Dagitty
 
 g = DAG(
@@ -10,15 +11,17 @@ g = DAG(
     :either => :dyspnea,
     :bronchitis => :dyspnea
 )
-println("Before test")
-r = is_d_separated(g,
+
+b1 = @btime is_d_separated(g,
     [:asia, :smoking],
     [:dyspnea, :xray],
     [:bronchitis, :either]
 )
-# r = is_d_separated(g,
-#     [:tuberculosis, :cancer],
-#     [:bronchitis],
-#     [:smoking, :xray]
-# )
-println("Result: $r")
+display(b1)
+
+b2 = @btime is_d_separated(g,
+    [:tuberculosis, :cancer],
+    [:bronchitis],
+    [:smoking, :xray]
+)
+display(b2)
