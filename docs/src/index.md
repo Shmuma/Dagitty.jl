@@ -7,9 +7,9 @@ So, methods from Dagitty R package are being ported on "as needed" basis.
 
 At the moment, package provides the following functionality:
 
-* Declaration of DAGs as set of labelled nodes and edges.
-* Drawing of those DAGs using GraphPlot package.
-* Check for D-separation between two sets of nodes conditioned on third set of nodes.
+* [Declaration of DAGs as set of labelled nodes and edges](DAG.md)
+* [Drawing of those DAGs using GraphPlot package](utils.md)
+* [Check for D-separation between two sets of nodes conditioned on third set of nodes](d_separation.md)
 * Discovery of pairwise conditional independent variables.
 
 
