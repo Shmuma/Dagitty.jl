@@ -1,4 +1,4 @@
 using Documenter
 using Dagitty
 
-makedocs(sitename="Dagitty documentation")
+makedocs(sitename="Dagitty")
