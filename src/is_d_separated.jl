@@ -1,7 +1,31 @@
+"""
+    is_d_separated(dag, x, y, cond)
+
+Checks that X variables are independent on Y variables being conditioned on third set of variables.
+Three sets could be given as vectors of node labels (`Symbol`) or as vectors of node indices in the underlying graph.
+
+# Examples
+```jldoctest
+julia> using Dagitty
+
+julia> g = DAG(:A => :C, :C => :B)
+DAG: {3, 2} directed simple Int64 graph with labels [:A, :B, :C])
+
+julia> is_d_separated(g, [:A], [:B], [:C])
+true
+
+julia> is_d_separated(g, [:A], [:C], [:B])
+false
+
+julia> is_d_separated(g, [1], [2], [3])
+true
+```
+"""
 function is_d_separated(dag::DAG, x::Vector{Symbol}, y::Vector{Symbol}, cond::Vector{Symbol})::Bool
     f = v -> node(dag, v)
     is_d_separated(dag, map(f, x), map(f, y), map(f, cond))
 end
+
 
 function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{Int})::Bool
     xyz = Set(union(x, y, cond))

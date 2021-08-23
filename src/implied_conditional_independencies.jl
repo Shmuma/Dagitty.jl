@@ -1,14 +1,37 @@
 using Combinatorics
 import Base: ==
 
+"""
+    ConditionalIndependence
+
+Structure representing conditional independency between two variables given conditioned set of variables.
+"""
 struct ConditionalIndependence
-    var1::Symbol
-    var2::Symbol
+    x::Symbol
+    y::Symbol
     cond::Vector{Symbol}
 end
 
-==(a::ConditionalIndependence, b::ConditionalIndependence) = a.var1 == b.var1 && a.var2 == b.var2 && a.cond == b.cond
+==(a::ConditionalIndependence, b::ConditionalIndependence) = a.x == b.x && a.y == b.y && a.cond == b.cond
 
+"""
+    implied_conditional_independencies(dag)
+
+From given DAG find all pair-wise conditional independencies of nodes.
+Returns vector of `ConditionalIndependence` structures.
+
+# Examples
+```jldoctest
+julia> using Dagitty
+
+julia> g = DAG(:A => :C, :C => :B)
+DAG: {3, 2} directed simple Int64 graph with labels [:A, :B, :C])
+
+julia> implied_conditional_independencies(g)
+1-element Vector{ConditionalIndependence}:
+ ConditionalIndependence(:A, :B, [:C])
+```
+"""
 function implied_conditional_independencies(dag::DAG)::Vector{ConditionalIndependence}
     max_set = length(dag.labels) - 2
     result = Vector{ConditionalIndependence}()
