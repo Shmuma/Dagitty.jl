@@ -11,4 +11,5 @@ makedocs(
 
 deploydocs(
     repo = "github.com/Shmuma/Dagitty.jl.git",
+    devbranch = "main",
 )
