@@ -1,4 +1,7 @@
 using Documenter
 using Dagitty
 
-makedocs(sitename="Dagitty")
+makedocs(
+    sitename="Dagitty",
+    modules=[Dagitty],
+)

@@ -1,5 +1,5 @@
 """
-# node
+    node(dag, label)
 
 Resolve node label in DAG: by node label return underlying graph node index
 """
