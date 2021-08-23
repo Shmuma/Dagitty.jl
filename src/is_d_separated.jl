@@ -3,6 +3,7 @@
 
 Checks that X variables are independent on Y variables being conditioned on third set of variables.
 Three sets could be given as vectors of node labels (`Symbol`) or as vectors of node indices in the underlying graph.
+Used NetworkX `d_separated` implementation.
 
 # Examples
 ```jldoctest
@@ -23,7 +24,7 @@ true
 """
 function is_d_separated(dag::DAG, x::Vector{Symbol}, y::Vector{Symbol}, cond::Vector{Symbol})::Bool
     f = v -> node(dag, v)
-    is_d_separated(dag, map(f, x), map(f, y), map(f, cond))
+    is_d_separated(dag, Vector{Int}(map(f, x)), Vector{Int}(map(f, y)), Vector{Int}(map(f, cond)))
 end
 
 
@@ -36,11 +37,14 @@ function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{I
         leaf = popfirst!(leaves)
         leaf ∈ xyz && continue
         for n ∈ inneighbors(gr, leaf)
-            if outdegree(gr, n) == 1
+            rem_edge!(gr, n, leaf)
+            if outdegree(gr, n) == 0
                 push!(leaves, n)
             end
         end
-        rem_vertex!(gr, leaf)
+        for d ∈ outneighbors(gr, leaf)
+            rem_edge!(gr, leaf, d)
+        end
     end
 
     # remove edges from Z set

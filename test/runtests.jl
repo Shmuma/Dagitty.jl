@@ -4,7 +4,8 @@ using Test
 tests = [
     "DAG",
     "implied_conditional_independencies",
-    "utils"
+    "utils",
+    "is_d_separated"
 ]
 
 for t ∈ tests
