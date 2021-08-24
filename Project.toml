@@ -11,7 +11,7 @@ Compose = "0.9"
 DataStructures = "0.18"
 Documenter = "0.27"
 GraphPlot = "0.4"
-LightGraph = "1.3.5"
+LightGraphs = "1.3.5"
 
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
