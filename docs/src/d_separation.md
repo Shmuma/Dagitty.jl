@@ -14,12 +14,12 @@ I've done simple benchmark on "asia graph" (taken from NetworkX test suite). Cod
 
 Python:
 ```
-test1: 95.59 us
-test2: 97.65 us
+test1: 82.38 us
+test2: 81.57 us
 ```
 
 Julia:
 ```
-test1: 10.191 μs (205 allocations: 17.78 KiB)
-test2: 11.556 μs (236 allocations: 20.33 KiB)
+test1:  8.322 μs (194 allocations: 16.67 KiB)
+test2:  9.539 μs (225 allocations: 19.23 KiB)
 ```

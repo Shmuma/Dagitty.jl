@@ -29,13 +29,13 @@ end
 
 
 function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{Int})::Bool
-    xyz = Set(union(x, y, cond))
     gr = SimpleDiGraph(dag.graph)
+    in_xyz = n -> (n ∈ x || n ∈ y || n ∈ cond)
     leaves = [n for n in vertices(gr) if outdegree(gr, n) == 0]
 
     while !isempty(leaves)
         leaf = popfirst!(leaves)
-        leaf ∈ xyz && continue
+        in_xyz(leaf) && continue
         for n ∈ collect(inneighbors(gr, leaf))
             rem_edge!(gr, n, leaf)
             if outdegree(gr, n) == 0

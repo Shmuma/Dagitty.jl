@@ -12,16 +12,16 @@ g = DAG(
     :bronchitis => :dyspnea
 )
 
+print("test1:")
 b1 = @btime is_d_separated(g,
     [:asia, :smoking],
     [:dyspnea, :xray],
     [:bronchitis, :either]
 )
-display(b1)
 
+print("test2:")
 b2 = @btime is_d_separated(g,
     [:tuberculosis, :cancer],
     [:bronchitis],
     [:smoking, :xray]
 )
-display(b2)
