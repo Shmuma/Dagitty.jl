@@ -20,6 +20,6 @@ test2: 81.57 us
 
 Julia:
 ```
-test1:  8.322 μs (194 allocations: 16.67 KiB)
-test2:  9.539 μs (225 allocations: 19.23 KiB)
+test1:  7.998 μs (191 allocations: 16.58 KiB)
+test2:  9.079 μs (225 allocations: 19.30 KiB)
 ```
