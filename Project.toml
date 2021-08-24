@@ -3,6 +3,9 @@ uuid = "d56128e0-8113-48cd-82a0-fc808dc30d4b"
 authors = ["Max Lapan <max.lapan@gmail.com>"]
 version = "0.0.1"
 
+[compat]
+julia = "1"
+
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
