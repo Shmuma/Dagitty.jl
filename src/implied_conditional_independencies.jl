@@ -49,6 +49,37 @@ function implied_conditional_independencies(dag::DAG)::Vector{ConditionalIndepen
 end
 
 
+"""
+    implied_conditional_independencies_min
+
+From given DAG return all pair-wise conditional independencies of nodes with
+minimal condition set.
+
+# Examples
+```jldoctest
+julia> using Dagitty
+
+julia> plant_dag = Dagitty.DAG(:H_0 => :H_1, :F => :H_1, :T => :F)
+DAG: {4, 3} directed simple Int64 graph with labels [:F, :H_0, :H_1, :T])
+
+julia> implied_conditional_independencies_min(plant_dag)
+3-element Vector{ConditionalIndependence}:
+ ConditionalIndependence(:F, :H_0, Symbol[])
+ ConditionalIndependence(:H_0, :T, Symbol[])
+ ConditionalIndependence(:H_1, :T, [:F])
+
+```
+"""
+function implied_conditional_independencies_min(dag::DAG)::Vector{ConditionalIndependence}
+    s = implied_conditional_independencies(dag)
+    [
+        a for a ∈ s
+        if !any(b -> b.x == a.x && b.y == a.y && b.cond != a.cond && b.cond ⊆ a.cond, s)
+    ]
+end
+
+
 export
     ConditionalIndependence,
-    implied_conditional_independencies
+    implied_conditional_independencies,
+    implied_conditional_independencies_min

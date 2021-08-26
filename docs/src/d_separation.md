@@ -6,6 +6,7 @@ D-Separation is a method to find from causal DAG which variables are indendent o
 is_d_separated
 ConditionalIndependence
 implied_conditional_independencies
+implied_conditional_independencies_min
 ```
 
 ## Benchmark of D-separation
