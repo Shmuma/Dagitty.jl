@@ -5,7 +5,8 @@ tests = [
     "DAG",
     "implied_conditional_independencies",
     "utils",
-    "is_d_separated"
+    "is_d_separated",
+    "adj_sets",
 ]
 
 for t ∈ tests

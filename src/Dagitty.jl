@@ -5,5 +5,6 @@ include("drawdag.jl")
 include("is_d_separated.jl")
 include("implied_conditional_independencies.jl")
 include("utils.jl")
+include("adj_sets.jl")
 
 end
