@@ -5,5 +5,7 @@ in some specific category.
 
 ```@docs
 node
+nodes_indices
+nodes_labels
 drawdag
 ```

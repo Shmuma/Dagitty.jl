@@ -16,6 +16,24 @@ ERROR: DAGHasLoops()
 struct DAGHasLoops <: Exception end
 
 """
+    LabelNotFound
+
+Exception thrown on attempt to resolve label which is not present in the DAG.
+
+# Examples
+```jldoctest
+julia> using Dagitty
+
+julia> g = DAG(:A => :B)
+DAG: {2, 1} directed simple Int64 graph with labels [:A, :B])
+
+julia> node(g, :C)
+"""
+struct LabelNotFound <: Exception
+    label::Symbol
+end
+
+"""
     DAG
 
 Structure with fields:
@@ -71,4 +89,5 @@ end
 
 export
     DAG,
-    DAGHasLoops
+    DAGHasLoops,
+    LabelNotFound

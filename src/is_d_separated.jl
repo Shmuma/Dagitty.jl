@@ -22,10 +22,8 @@ julia> is_d_separated(g, [1], [2], [3])
 true
 ```
 """
-function is_d_separated(dag::DAG, x::Vector{Symbol}, y::Vector{Symbol}, cond::Vector{Symbol})::Bool
-    f = v -> node(dag, v)
-    is_d_separated(dag, Vector{Int}(map(f, x)), Vector{Int}(map(f, y)), Vector{Int}(map(f, cond)))
-end
+is_d_separated(dag::DAG, x::Vector{Symbol}, y::Vector{Symbol}, cond::Vector{Symbol})::Bool =
+    is_d_separated(dag, nodes_indices(dag, x), nodes_indices(dag, y), nodes_indices(dag, cond))
 
 
 function is_d_separated(dag::DAG, x::Vector{Int}, y::Vector{Int}, cond::Vector{Int})::Bool
