@@ -35,3 +35,8 @@ g = DAG(
     [:bronchitis],
     [:smoking, :xray]
 )
+
+# test ignore_edges argument
+g = DAG(:A => :B, :A => :C, :C => :B)
+@test !is_d_separated(g, [:A], [:B], [:C])
+@test is_d_separated(g, [:A], [:B], [:C], ignore_edges=[:A => :B])

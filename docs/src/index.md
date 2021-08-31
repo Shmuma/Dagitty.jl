@@ -11,6 +11,7 @@ At the moment, package provides the following functionality:
 * [Drawing of those DAGs using GraphPlot package](utils.md)
 * [Check for D-separation between two sets of nodes conditioned on third set of nodes](d_separation.md)
 * Discovery of pairwise conditional independent variables.
+* [Adjustment sets detection](adj_sets.md)
 
 
 # Basic examples

@@ -4,6 +4,7 @@ Directed Acyclic Graph with labeled nodes. This structure is a very thin wrapper
 
 ```@docs
 DAG
+DAGEdge
 DAGHasLoops
 LabelNotFound
 ```

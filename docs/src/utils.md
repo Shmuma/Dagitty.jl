@@ -7,5 +7,6 @@ in some specific category.
 node
 nodes_indices
 nodes_labels
+edges_indices
 drawdag
 ```

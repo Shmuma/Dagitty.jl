@@ -34,6 +34,13 @@ struct LabelNotFound <: Exception
 end
 
 """
+    DAGEdge
+
+Pair of symbols representing DAG edge.
+"""
+DAGEdge = Pair{Symbol, Symbol}
+
+"""
     DAG
 
 Structure with fields:
@@ -66,7 +73,7 @@ struct DAG
     labels::Vector{Symbol}
 end
 
-DAG(edges::Pair{Symbol, Symbol}...) = DAG(edges)
+DAG(edges::DAGEdge...) = DAG(edges)
 
 function DAG(edges)
     labels = collect(unique(Iterators.flatten(edges)))
@@ -89,5 +96,6 @@ end
 
 export
     DAG,
+    DAGEdge,
     DAGHasLoops,
     LabelNotFound

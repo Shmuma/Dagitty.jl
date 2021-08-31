@@ -7,3 +7,5 @@ g = DAG(:A => :M, :A => :D, :M => :D)
 @test_throws LabelNotFound(:X) nodes_indices(g, [:A, :X])
 
 @test nodes_labels(g, [1, 3]) == [:A, :M]
+
+@test edges_indices(g, [(:A => :M), (:M => :D)]) == [1 => 3, 3 => 2]

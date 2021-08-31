@@ -63,7 +63,30 @@ julia> nodes_labels(g, [1, 3])
 """
 nodes_labels(dag::DAG, indices::Vector{Int})::Vector{Symbol} = dag.labels[indices]
 
+
+"""
+    edges_indicse(dag, edges)
+
+Convert list of edges (pairs of symbols) into list of node indices' pairs.
+
+# Examples
+```jldoctest
+julia> using Dagitty
+
+julia> g = DAG(:A => :B)
+DAG: {2, 1} directed simple Int64 graph with labels [:A, :B])
+
+julia> edges_indices(g, [:A => :B, :B => :A])
+2-element Vector{Pair{Int64, Int64}}:
+ 1 => 2
+ 2 => 1
+```
+"""
+edges_indices(dag::DAG, edges::Vector{DAGEdge})::Vector{Pair{Int, Int}} =
+    map(e -> node(dag, e[1]) => node(dag, e[2]), edges)
+
 export
     node,
     nodes_indices,
-    nodes_labels
+    nodes_labels,
+    edges_indices
