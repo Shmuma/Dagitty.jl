@@ -13,3 +13,7 @@ g = DAG(:S => :W, :S => :A, :S => :M, :A => :M, :M => :D, :A => :D, :W => :D)
 # Another example
 g = DAG(:E => :W, :U => :W)
 @test all_backdoor_adjustment_sets(g, :E, :W) == [Symbol[]]
+
+# test from rethinking
+g = DAG(:X => :Y, :X => :Z, :Z => :Y, :A => :Z, :A => :X)
+@test all_backdoor_adjustment_sets(g, :X, :Y) == [[:A]]

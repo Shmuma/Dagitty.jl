@@ -40,7 +40,7 @@ Checks that given set z is a valid "backdoor adjustment set", i.e.
 z being observed disconnects x from y.
 """
 is_valid_backdoor_adjustment_set(dag::DAG, x::Int, y::Int, z::Vector{Int})::Bool =
-    is_d_separated(dag, [x], [y], z, ignore_edges=[x => y])
+    is_d_separated(dag, [x], [y], union(z, [x]), ignore_edges=[x => y])
 
 export
     all_backdoor_adjustment_sets,
